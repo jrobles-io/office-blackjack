@@ -1,23 +1,10 @@
 
-const game = new Game();
-const hitButton = document.getElementById("hit-button");
-const standButton = document.getElementById("stand-button");
 const betButton = document.getElementById("bet-button");
+const game = new Game();
 
-//game.play();
-hitButton.addEventListener("click", () => {
-    game.hit = true
-    console.log(game.hit)
+//Bet Button starts a new game
+betButton.addEventListener("click", () => {
+    game.play()
 });
-
-
-
-
-
-
-function startGame() {
-    game
-    game.play();
-}
 
 
