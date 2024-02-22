@@ -71,8 +71,8 @@ class Blackjack {
         const randomCardName = cardNames[Math.floor(Math.random() * cardNames.length)]
         const randomCard = {[randomCardName]: this.deck[randomCardName]};
         delete this.deck[randomCardName];
-        console.log("randomCard", randomCard)
-        console.log("remaining deck", cardNames.length)
+        // console.log("randomCard", randomCard)
+        // console.log("remaining deck", cardNames.length)
         return randomCard;
     };
      
@@ -114,7 +114,7 @@ class Blackjack {
         } else if (dealerScore > 21) {
           return "Player wins!";
         } else if (playerScore > dealerScore) {
-          return "Player wins.";
+          return "Player wins!";
         } else return "Dealer wins."
     };
 };
