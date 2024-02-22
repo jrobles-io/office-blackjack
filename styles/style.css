@@ -22,10 +22,10 @@ h3 {
 
 #dealer, #player {
     /* background-color: #fff; */
-    border: 5px solid #fbeb03;
+    /* border: 5px solid #fbeb03; */
     padding: 20px;
     margin: 10px auto;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
     border-radius: 8px;
     min-width: 250px;
     max-width: 500px;
@@ -42,7 +42,7 @@ h3 {
     margin: 10px 0px;
     padding: 15px 10px 5px; 
     /* background-color: #eaeaea; */
-    border: 5px solid #fbeb03;
+    /* border: 5px solid #fbeb03; */
     border-radius: 5px;
     display: flex;
     flex-wrap: nowrap;
@@ -105,6 +105,9 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    box-shadow: 
+    1px 1px 2px #000,
+    inset 0.5px 0.5px 0.5px #8c8c8c;
     transition: background-color 0.3s ease;
 }
 
@@ -112,43 +115,35 @@ button:hover {
     background-color: #9c0d13;
 }
 
+
 #betting-bar {
-    appearance: none;
+    -webkit-appearance: none;
+    width: 250px;
     height: 6px;
-    width: 100%;
+    outline: none;
+    border-radius: 3px;
     margin: 10px 0px;
     background: #1f1f1f;
-    border-radius: 8px;
     box-shadow: 
         1px 1px 2px #000,
         inset 0.5px 0.5px 0.5px #909090;
-    cursor: pointer;
-    position: relative;
-}
-
-input[type="range"]::-webkit-slider-thumb {
+    }
+    
+    
+#betting-bar::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background: #dfb2dc;
-    width: 12px;
-    height: 12px;
-    border-radius: 15px; 
-    z-index: 3;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    z-index: 2;
     position: relative;
-
+    background: #3a3939;
+    box-shadow: inset 0px 1px 2px #909090;
+    border-radius: 15px; 
 }
 
-input[type="range"]::-webkit-range-progress {
-    /* -webkit-appearance: none; */
-    background: #d33322;
-}
-
-#draggable-knob {
-    width: 15px; 
-    background-color: #eaeaea; 
-    cursor: ew-resize; 
-    position: absolute;
-    right: 0; 
-    border-radius: 8px; 
+.cash {
+    margin: 0.1px;
 }
 
 #game-result {

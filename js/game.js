@@ -37,10 +37,7 @@ class Game {
         this.betButton.style.pointerEvents = "none";
         this.bettingBar.style.pointerEvents = "none";
         this.gameResultContainer.innerHTML = '';
-
-        //Substract bet amount from bankroll
         this.bet = betAmount;
-        //this.bankroll -= betAmount;
         this.bankrollDiv.innerHTML = `Bankroll: $${this.bankroll}`
 
 
@@ -60,11 +57,18 @@ class Game {
     
         //Check for Blackjack
         if(this.dealerScore === 0) {
-            this.endGame();
+            this.flipDealerCard()
+            setTimeout(() => {       
+                this.endGame(); 
+            }, 1300);
         };
+
         if (this.playerScore === 0) {
-            this.dealerHits();
-            this.endGame();
+            this.flipDealerCard()
+            setTimeout(() => {     
+                this.dealerHits();   
+                this.endGame(); 
+            }, 1300);
         };
 
         //Player hits
@@ -78,21 +82,24 @@ class Game {
             console.log("playerCards:", this.playerCards, "dealerCards:", this.dealerCards)
             console.log(`playerScore: ${this.playerScore}`, `dealerScore: ${this.dealerScore}`)
 
-            if (this.playerScore >= 21) {  
+            if (this.playerScore >= 21) { 
+                this.flipDealerCard() 
+                setTimeout(() => {     
                     this.dealerHits();   
                     this.endGame(); 
-            }
+                }, 1300);
+            };
         };
 
         //Player stands
         this.stand.onclick = () => {
             console.log("Player stands.");
-            let divDealerCards = document.querySelectorAll('#dealer .card');
-            divDealerCards[1].classList.toggle('turned');
+
+            this.flipDealerCard()
             setTimeout(() => {     
                 this.dealerHits();   
                 this.endGame(); 
-            }, 1000);
+            }, 1300);
         };    
     };
 
@@ -133,9 +140,25 @@ class Game {
         };
 
         // //Show Scores
-        this.playerScoreContainer.innerHTML = this.playerScore;
-        this.dealerScoreContainer.innerHTML = gameOver ? this.dealerScore : Object.values(this.dealerCards[0]);
+        this.playerScoreContainer.innerHTML = this.playerScore === 0 ? "Blackjack!" : this.playerScore;
+        if(gameOver) {
+            this.dealerScoreContainer.innerHTML = this.dealerScore === 0 ? "Blackjack!" : this.dealerScore
+        } else {
+            this.dealerScoreContainer.innerHTML =Object.values(this.dealerCards[0]);
+        };    
+
+
+
     };
+
+    flipDealerCard() {
+        this.hit.style.pointerEvents = "none";
+        this.stand.style.pointerEvents = "none";
+        setTimeout(() => {
+            let divDealerCards = document.querySelectorAll('#dealer .card');
+            divDealerCards[1].classList.toggle('turned');
+        }, 500);
+    }
 
     dealerHits() {
         while (this.dealer != 0 && this.dealerScore < 17) {
