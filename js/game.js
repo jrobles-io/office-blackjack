@@ -16,6 +16,7 @@ class Game {
         this.playerScoreContainer = document.querySelector("#player .score");
         this.dealerScoreContainer = document.querySelector("#dealer .score");
         this.gameResultContainer = document.getElementById("game-result");
+        this.bettingBar = document.getElementById('betting-bar');
         this.betAmountDiv = document.getElementById('bet-amount');
         this.bankrollDiv = document.getElementById('bankroll');
 
@@ -34,6 +35,7 @@ class Game {
         this.hit.style.pointerEvents = "auto";
         this.stand.style.pointerEvents = "auto";
         this.betButton.style.pointerEvents = "none";
+        this.bettingBar.style.pointerEvents = "none";
         this.gameResultContainer.innerHTML = '';
 
         //Substract bet amount from bankroll
@@ -76,17 +78,21 @@ class Game {
             console.log("playerCards:", this.playerCards, "dealerCards:", this.dealerCards)
             console.log(`playerScore: ${this.playerScore}`, `dealerScore: ${this.dealerScore}`)
 
-            if (this.playerScore >= 21) {
-                this.dealerHits();
-                this.endGame();
+            if (this.playerScore >= 21) {  
+                    this.dealerHits();   
+                    this.endGame(); 
             }
         };
 
         //Player stands
         this.stand.onclick = () => {
             console.log("Player stands.");
-            this.dealerHits();        
-            this.endGame(); 
+            let divDealerCards = document.querySelectorAll('#dealer .card');
+            divDealerCards[1].classList.toggle('turned');
+            setTimeout(() => {     
+                this.dealerHits();   
+                this.endGame(); 
+            }, 1000);
         };    
     };
 
@@ -180,6 +186,7 @@ class Game {
         this.hit.style.pointerEvents = "none";
         this.stand.style.pointerEvents = "none";
         this.betButton.style.pointerEvents = "auto";
+        this.bettingBar.style.pointerEvents = "auto";
 
         //Show cards & reset deck
         this.gameOver = true;  

@@ -12,37 +12,46 @@ betButton.addEventListener("click", () => {
 
 
 const bettingBar = document.getElementById('betting-bar');
-const bettingKnob = document.getElementById("draggable-knob");
 const betAmountDiv = document.getElementById('bet-amount');
-let isDragging = false;
+const betValue = document.querySelector("#bet-amount")
 
 const maxBet = 100;
 
-betAmountDiv.innerText = `$${maxBet}`;
+// betAmountDiv.innerText = `$${maxBet}`;
 
-bettingKnob.addEventListener("mousedown", (e) => {
-    e.preventDefault();
-    isDragging = true
+bettingBar.addEventListener("mousemove", (e) => {
+    betAmount = parseInt(bettingBar.value)
+    betAmountDiv.innerText = `$${betAmount}`
 })
 
-document.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    const bettingBarRect = bettingBar.getBoundingClientRect();  
-    let newWidth = e.clientX - bettingBarRect.left;
+bettingBar.addEventListener("mouseup", (e)=> {
+    betAmount = parseInt(bettingBar.value)
+    betAmountDiv.innerText = `$${betAmount}`
+})
 
-    newWidth = Math.min(Math.max(newWidth, 1), bettingBarRect.width); 
+// bettingKnob.addEventListener("mousedown", (e) => {
+//     e.preventDefault();
+//     isDragging = true
+// })
 
-    betAmount = Math.round((newWidth / bettingBarRect.width) * maxBet);
-    betAmountDiv.innerText = `$${betAmount}`;
+// document.addEventListener("mousemove", (e) => {
+//     if (!isDragging) return;
+//     const bettingBarRect = bettingBar.getBoundingClientRect();  
+//     let newWidth = e.clientX - bettingBarRect.left;
 
-    bettingBar.style.width = `${newWidth / bettingBarRect.width * 100}%`;
+//     newWidth = Math.min(Math.max(newWidth, 1), bettingBarRect.width); 
 
-});
+//     betAmount = Math.round((newWidth / bettingBarRect.width) * maxBet);
+//     betAmountDiv.innerText = `$${betAmount}`;
 
-document.addEventListener('mouseup', () => {
-    if (isDragging) {
-        isDragging = false
-    };
-});
+//     bettingBar.style.width = `${newWidth / bettingBarRect.width * 100}%`;
+
+// });
+
+// document.addEventListener('mouseup', () => {
+//     if (isDragging) {
+//         isDragging = false
+//     };
+// });
 
 

@@ -8,22 +8,25 @@
 </head>
 <body>
     <h1>Office Blackjack</h1>
-    <div id="dealer">Dealer
+    <div id="dealer">
+        <h3>Dealer</h3>
         <div class="cards-container"></div>
         <div class="score"></div>
     </div>
 
-    <div id="player">Player
+    <div id="player">
+        <h3>Player</h3>
         <div class="cards-container"></div>
         <div class="score"></div>
         <button id="bet-button">Bet</button>
         <button id="hit-button">Hit</button>
         <button id="stand-button">Stand</button>
         <div id ="betting">
-            <div id="betting-bar">
-                <div id="draggable-knob" style="float: right; height: 100%;"></div>
-            </div>
+            <input type="range" id="betting-bar" min="1" max="100">
+            <div class=""
+            <div class="progress"></div>
             <div id ="bet-amount"></div>
+            <span id="bet-value"></span>
             <div id="bankroll">Bankroll: $100</div>
         </div>
     </div>
