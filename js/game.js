@@ -1,4 +1,4 @@
-console.log('Game script loaded');
+//console.log('Game script loaded');
 class Game {
     constructor () {
         this.blackjack = new Blackjack();
@@ -59,16 +59,16 @@ class Game {
         if(this.dealerScore === 0) {
             this.flipDealerCard()
             setTimeout(() => {       
-                this.endGame(); 
-            }, 1300);
+                return this.endGame(); 
+            }, 1500);
         };
 
         if (this.playerScore === 0) {
             this.flipDealerCard()
             setTimeout(() => {     
                 this.dealerHits();   
-                this.endGame(); 
-            }, 1300);
+                return this.endGame(); 
+            }, 1500);
         };
 
         //Player hits
@@ -86,8 +86,8 @@ class Game {
                 this.flipDealerCard() 
                 setTimeout(() => {     
                     this.dealerHits();   
-                    this.endGame(); 
-                }, 1300);
+                    return this.endGame(); 
+                }, 1500);
             };
         };
 
@@ -98,9 +98,11 @@ class Game {
             this.flipDealerCard()
             setTimeout(() => {     
                 this.dealerHits();   
-                this.endGame(); 
-            }, 1300);
-        };    
+                return this.endGame();             
+            }, 1500);
+        };
+        
+        //console.log(this.bankroll)
     };
 
     showCardsAndScore(gameOver) {
@@ -157,6 +159,7 @@ class Game {
         setTimeout(() => {
             let divDealerCards = document.querySelectorAll('#dealer .card');
             divDealerCards[1].classList.toggle('turned');
+            this.dealerScoreContainer.innerHTML = this.dealerScore
         }, 500);
     }
 
@@ -202,7 +205,7 @@ class Game {
         const gameResult = this.blackjack.compareScores(this.playerScore, this.dealerScore);
         this.gameResultContainer.innerHTML = gameResult //Show game result
         const betResult = this.calculateBetResult(this.bet, gameResult)
-        console.log(betResult)
+        //console.log(betResult)
         this.updateBankroll(betResult)
 
         //Enable/Disable buttons
@@ -218,8 +221,46 @@ class Game {
         console.log("playerCards:", this.playerCards, "dealerCards:", this.dealerCards)
         console.log(`playerScore: ${this.playerScore}`, `dealerScore: ${this.dealerScore}`)
         console.log(this.blackjack.compareScores(this.playerScore, this.dealerScore));
+
+        if (this.bankroll <= 0) {
+            this.gameOverPage() 
+        }
     };
 
+    gameOverPage() {
+        // Clear the document body
+        document.body.innerHTML = '';
+    
+        // Create a new 'Game Over' message
+        const gameOverMessage = document.createElement('div');
+        gameOverMessage.setAttribute('id', 'game-over-message');
+        gameOverMessage.style.textAlign = 'center'; // Center the message
+        gameOverMessage.style.marginTop = '20vh'; // Position the message vertically
+        gameOverMessage.style.fontSize = '24px'; // Increase the font size
+        gameOverMessage.style.color = 'white'; // Set the text color
+        gameOverMessage.innerHTML = '<h1>Game Over</h1><p>Thanks for playing!</p>';
+    
+        // Optionally, add a restart button
+        const restartButton = document.createElement('button');
+        restartButton.innerText = 'Restart Game';
+        restartButton.style.marginTop = '20px';
+        restartButton.style.padding = '10px 20px';
+        restartButton.style.fontSize = '18px';
+        restartButton.style.cursor = 'pointer';
+        const newLocal = restartButton.onclick = function () {
+            // Code to restart the game, which might involve reloading the page
+            // or reinitializing the game state, depending on how your game is structured
+            window.location.reload();
+        };
+    
+        // Add the message (and button) to the document body
+        document.body.appendChild(gameOverMessage);
+        document.body.appendChild(restartButton);
+    
+        // Adjust the body's styling if necessary
+        document.body.style.backgroundColor = '#333'; // Set a background color
+    }
+    
 };
 
 

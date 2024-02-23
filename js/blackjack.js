@@ -1,4 +1,4 @@
-console.log('Blackjack script loaded');
+//console.log('Blackjack script loaded');
 class Blackjack {
     constructor () {
         this.originalDeck = {
