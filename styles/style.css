@@ -17,7 +17,6 @@ body {
     position: fixed; 
     top: 0;
     left: 0;
-    background-image: url('img/the-office-cover-art.webp'); 
     background-size: cover; 
     background-position: center; 
     display: flex; 
@@ -181,7 +180,7 @@ button:hover {
 
 #game-over-message {
     text-align: center;
-    margin-top: 20vh;
+    margin-top: 1px;
     font-size: 24px;
     color: white;
 }

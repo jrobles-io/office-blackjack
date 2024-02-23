@@ -238,8 +238,11 @@ class Game {
         // Game Over Message
         const gameOverMessage = document.createElement('div');
         gameOverMessage.setAttribute('id', 'game-over-message');
-        gameOverMessage.innerHTML = '<h1>Game Over</h1><p>You ran out of cash :(</p>';
+        gameOverMessage.innerHTML = '<h1>Game Over</h1><p>Micheal Scott took all your cash!</p>';
         document.body.appendChild(gameOverMessage);
+
+        const gameOverImage = '<img id="game-over-img" src="img/game-over-image.png">'
+        gameOverMessage.innerHTML += gameOverImage
     
         // Restart Button
         const restartButton = document.createElement('button');
