@@ -11,6 +11,7 @@ class Game {
         this.gameOver;
 
         //html divs
+        this.startScreen = document.querySelector("#start-screen");
         this.playerCardsContainer = document.querySelector("#player .cards-container");
         this.dealerCardsContainer = document.querySelector("#dealer .cards-container");
         this.playerScoreContainer = document.querySelector("#player .score");
@@ -114,8 +115,8 @@ class Game {
             let cardName = Object.keys(card)[0]
             let cardImage = `
             <div class="card" name="${cardName}">
-                <img class="back" src="../img/playing-cards/X.svg">
-                <img class="front" src="../img/playing-cards/${cardName}.svg">
+                <img class="back" src="/img/playing-cards/X.svg">
+                <img class="front" src="/img/playing-cards/${cardName}.svg">
             </div>    
             `;
             this.playerCardsContainer.innerHTML += cardImage
@@ -126,8 +127,8 @@ class Game {
             let cardName = Object.keys(card)[0];
             let cardImage = `
             <div class="card" name="${cardName}">
-                <img class="back" src="../img/playing-cards/X.svg">
-                <img class="front" src="../img/playing-cards/${cardName}.svg">
+                <img class="back" src="/img/playing-cards/X.svg">
+                <img class="front" src="/img/playing-cards/${cardName}.svg">
                 </div>    
                 `;
                 this.dealerCardsContainer.innerHTML += cardImage;
@@ -222,8 +223,11 @@ class Game {
         console.log(`playerScore: ${this.playerScore}`, `dealerScore: ${this.dealerScore}`)
         console.log(this.blackjack.compareScores(this.playerScore, this.dealerScore));
 
+        //add logic to limit new bet to bankroll amount
         if (this.bankroll <= 0) {
-            this.gameOverPage() 
+            setTimeout (() => {
+                this.gameOverPage() 
+            }, 1700);
         }
     };
 
@@ -231,36 +235,21 @@ class Game {
         // Clear the document body
         document.body.innerHTML = '';
     
-        // Create a new 'Game Over' message
+        // Game Over Message
         const gameOverMessage = document.createElement('div');
         gameOverMessage.setAttribute('id', 'game-over-message');
-        gameOverMessage.style.textAlign = 'center'; // Center the message
-        gameOverMessage.style.marginTop = '20vh'; // Position the message vertically
-        gameOverMessage.style.fontSize = '24px'; // Increase the font size
-        gameOverMessage.style.color = 'white'; // Set the text color
-        gameOverMessage.innerHTML = '<h1>Game Over</h1><p>Thanks for playing!</p>';
+        gameOverMessage.innerHTML = '<h1>Game Over</h1><p>You ran out of cash :(</p>';
+        document.body.appendChild(gameOverMessage);
     
-        // Optionally, add a restart button
+        // Restart Button
         const restartButton = document.createElement('button');
-        restartButton.innerText = 'Restart Game';
-        restartButton.style.marginTop = '20px';
-        restartButton.style.padding = '10px 20px';
-        restartButton.style.fontSize = '18px';
-        restartButton.style.cursor = 'pointer';
+        restartButton.setAttribute('id', 'restart-button');
+        restartButton.innerText = 'Play Again';
+        document.body.appendChild(restartButton);
         const newLocal = restartButton.onclick = function () {
-            // Code to restart the game, which might involve reloading the page
-            // or reinitializing the game state, depending on how your game is structured
             window.location.reload();
         };
-    
-        // Add the message (and button) to the document body
-        document.body.appendChild(gameOverMessage);
-        document.body.appendChild(restartButton);
-    
-        // Adjust the body's styling if necessary
-        document.body.style.backgroundColor = '#333'; // Set a background color
-    }
-    
+    };   
 };
 
 
