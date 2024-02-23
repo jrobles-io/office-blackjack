@@ -17,7 +17,7 @@ body {
     position: fixed; 
     top: 0;
     left: 0;
-    background-image: url('/img/the-office-cover-art.webp'); 
+    background-image: url('img/the-office-cover-art.webp'); 
     background-size: cover; 
     background-position: center; 
     display: flex; 

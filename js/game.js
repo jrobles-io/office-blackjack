@@ -115,8 +115,8 @@ class Game {
             let cardName = Object.keys(card)[0]
             let cardImage = `
             <div class="card" name="${cardName}">
-                <img class="back" src="/img/playing-cards/X.svg">
-                <img class="front" src="/img/playing-cards/${cardName}.svg">
+                <img class="back" src="img/playing-cards/X.svg">
+                <img class="front" src="img/playing-cards/${cardName}.svg">
             </div>    
             `;
             this.playerCardsContainer.innerHTML += cardImage
@@ -127,8 +127,8 @@ class Game {
             let cardName = Object.keys(card)[0];
             let cardImage = `
             <div class="card" name="${cardName}">
-                <img class="back" src="/img/playing-cards/X.svg">
-                <img class="front" src="/img/playing-cards/${cardName}.svg">
+                <img class="back" src="img/playing-cards/X.svg">
+                <img class="front" src="img/playing-cards/${cardName}.svg">
                 </div>    
                 `;
                 this.dealerCardsContainer.innerHTML += cardImage;
