@@ -193,11 +193,11 @@ class Game {
         
         setTimeout(() => {
             this.bankrollDiv.innerHTML = `Bankroll: $${this.bankroll}`
-        }, 2000);
+        }, 2500);
 
         setTimeout(() => {
             this.betAmountDiv.innerText = `$${betAmount}`
-        }, 2000);
+        }, 2500);
         
     };
 
@@ -223,7 +223,7 @@ class Game {
         console.log(`playerScore: ${this.playerScore}`, `dealerScore: ${this.dealerScore}`)
         console.log(this.blackjack.compareScores(this.playerScore, this.dealerScore));
 
-        //add logic to limit new bet to bankroll amount
+        //Game Over 
         if (this.bankroll <= 0) {
             setTimeout (() => {
                 this.gameOverPage() 
